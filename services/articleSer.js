@@ -1,66 +1,26 @@
-import {
-    findArticles,
-    findArticle,
-    createArticle,
-    updateArticle,
-    deleteArticle
-} from "../models/modArticle";
+import ModelArticle from "../models/modArticle";
 
-export const findAll = async (req, res) => {
-    try {
-        // To Do : Sorting
-        const articles = await findArticles();
-        //console.log(articles);
-    } catch (error) {
-        console.log(error);
+class ArticleService {
+    constructor() {
+        this.modelArticle = new ModelArticle();
     }
-};
+    async findArticles() {
+        const articles = await this.modelArticle.find();
+        return articles;
+    }
+    async findArticle(id) {
+        const article = await this.modelArticle.findById(id);
+        return article;
+    }
+    async createArticle(title, content, author) {
+        await this.modelArticle.create(title, content, author);
+    }
+    async updateArticle(id, title, content) {
+        await this.modelArticle.update(id, title, content);
+    }
+    async deleteArticle(id) {
+        await this.modelArticle.delete(id);
+    }
+}
 
-export const findOne = async (req, res) => {
-    try {
-        const {
-            params: { id }
-        } = req;
-        const article = await findArticle(id);
-        console.log(article);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const create = async (req, res) => {
-    try {
-        const {
-            body: { title, content, author }
-        } = req;
-        await createArticle(title, content, author);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const update = async (req, res) => {
-    try {
-        const {
-            params: { id }
-        } = req;
-        const {
-            body: { title, content }
-        } = req;
-        await updateArticle(id, title, content);
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const deleteOne = async (req, res) => {
-    try {
-        const {
-            params: { id }
-        } = req;
-        await deleteArticle(id);
-        console.log();
-    } catch (error) {
-        console.log(error);
-    }
-};
+export default ArticleService;

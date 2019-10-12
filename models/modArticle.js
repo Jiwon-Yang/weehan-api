@@ -1,21 +1,25 @@
 import Article from "./entities/Article.entity";
 
-export const findArticles = async () => {
-    return await Article.find({});
-};
+class ModelArticle {
+    async find() {
+        return await Article.find({});
+    }
 
-export const findArticle = async _id => {
-    return await Article.find({ _id });
-};
+    async findById(_id) {
+        return await Article.find({ _id });
+    }
 
-export const createArticle = async (title, content, author) => {
-    await Article.create({ title, content, author });
-};
+    async create(title, content, author) {
+        await Article.create({ title, content, author });
+    }
 
-export const updateArticle = async (_id, title, content) => {
-    await Article.update({ _id }, { $set: { title, content } });
-};
+    async update(_id, title, content) {
+        await Article.update({ _id }, { $set: { title, content } });
+    }
 
-export const deleteArticle = async _id => {
-    await Article.deleteOne({ _id });
-};
+    async delete(_id) {
+        await Article.deleteOne({ _id });
+    }
+}
+
+export default ModelArticle;

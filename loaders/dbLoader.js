@@ -7,8 +7,8 @@ const dbLoader = async () => {
     const connect = async () => {
         try {
             await mongoose.connect(config.MONGO_URL, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true
+                useUnifiedTopology: true,
+                useNewUrlParser: true
             });
         } catch (e) {
             console.log("몽고 디비 연결 실패");
