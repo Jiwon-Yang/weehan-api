@@ -9,7 +9,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    cuttings: [
+    scraps: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Article"

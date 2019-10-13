@@ -20,7 +20,6 @@ router.post("/registration", async (req, res) => {
         //To Do : Passport 사용해보기
         //To Do : password 암호화
         //To Do : duplicate 검사
-        console.log(email, password);
     } catch (error) {
         console.log(error);
         res.json(error);

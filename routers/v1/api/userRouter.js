@@ -1,6 +1,7 @@
 import express from "express";
-import { userDetail, addScrap, removeScrap } from "../../../services/userSer";
+import UserService from "../../../services/userSer";
 
+const userService = new UserService();
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
@@ -8,13 +9,24 @@ router.get("/:id", async (req, res) => {
         const {
             params: { id }
         } = req;
-        return await findUser(id);
+        const user = await userService.findUser(id);
+        return user;
     } catch (error) {
         console.log(error);
     }
 });
 
-router.post("/:id/scrap", addScrap);
-router.delete("/:id/scrap", removeScrap);
+router.get("/:id/scraps", async (req, res) => {
+    try {
+        const {
+            params: { id }
+        } = req;
+        const scraps = await userService.findScraps(id);
+        console.log(scraps); // { scraps: [] }
+        return scraps;
+    } catch (error) {
+        console.log(error);
+    }
+});
 
 export default router;
