@@ -8,7 +8,7 @@ import express from "express";
 const expressLoader = app => {
     app.use(
         session({
-            secret: "secret",
+            secret: "fjseflijlskd",
             resave: false,
             saveUninitialized: true,
             store: new MongoStore({
@@ -20,7 +20,7 @@ const expressLoader = app => {
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
 
-    app.use("/", api);
+    app.use("/v1", api);
     app.set("port", config.PORT);
 };
 

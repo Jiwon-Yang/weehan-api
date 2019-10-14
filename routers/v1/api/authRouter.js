@@ -1,10 +1,11 @@
 import express from "express";
 import User from "../../../models/entities/User.entity";
+import serviceUser from "../../../services/serUser";
 
 const router = express.Router();
 
 router.get("/registration", (req, res) => {
-    res.json("get Registraion");
+    res.send("get Registraion");
 });
 
 router.post("/registration", async (req, res) => {
@@ -20,10 +21,13 @@ router.post("/registration", async (req, res) => {
         //To Do : Passport 사용해보기
         //To Do : password 암호화
         //To Do : duplicate 검사
+        res.status(200);
     } catch (error) {
         console.log(error);
         res.json(error);
     }
 });
+
+router.post("/login", (req, res) => {});
 
 export default router;

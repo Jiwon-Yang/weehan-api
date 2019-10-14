@@ -4,6 +4,10 @@ class UserService {
     constructor() {
         this.modelUser = new ModelUser();
     }
+    async findUserEmailAndPassword(_id) {
+        const infoIdPassword = this.modelUser.findEmailAndPassword(_id);
+        return infoIdPassword;
+    }
     async findUser(id) {
         const user = await this.modelUser.findByUserId(id);
         return user;
@@ -12,7 +16,6 @@ class UserService {
         const scraps = await this.modelUser.findScrapsById(id);
         return scraps;
     }
-    //async findScrap(user_id) {}
 }
 
 export default UserService;

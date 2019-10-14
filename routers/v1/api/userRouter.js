@@ -1,5 +1,5 @@
 import express from "express";
-import UserService from "../../../services/userSer";
+import UserService from "../../../services/serUser";
 
 const userService = new UserService();
 const router = express.Router();
@@ -10,9 +10,10 @@ router.get("/:id", async (req, res) => {
             params: { id }
         } = req;
         const user = await userService.findUser(id);
-        return user;
+        res.json(user);
     } catch (error) {
         console.log(error);
+        res.send(error);
     }
 });
 
@@ -23,9 +24,10 @@ router.get("/:id/scraps", async (req, res) => {
         } = req;
         const scraps = await userService.findScraps(id);
         console.log(scraps); // { scraps: [] }
-        return scraps;
+        res.json(scraps);
     } catch (error) {
         console.log(error);
+        res.send(error);
     }
 });
 

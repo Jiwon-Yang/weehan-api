@@ -31,7 +31,7 @@ class ArticleService {
         const scraps = await this.modelUser.findScrapsById(userId);
         const makeNewScraps = (scraps, bookId) => {
             if (scraps.scraps.includes(bookId)) {
-                //이건 프론트에서 알아서 하나?
+                //이건 프론트 부분
                 throw new Error("Scrap Duplicated!");
             }
             scraps.scraps.push(bookId); //객체->값으로 바꾸는 것은 mod인가 ser인가?
@@ -51,7 +51,7 @@ class ArticleService {
             if (idx > -1) {
                 scraps.scraps.splice(idx, 1);
             } else {
-                throw new Error("It is not scrapped!"); //프론트가 알아서 하는 부분?
+                throw new Error("Article is not scrapped!"); //이건 프론트 부분
             }
             return scraps.scraps;
         };
