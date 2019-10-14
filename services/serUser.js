@@ -1,6 +1,6 @@
 import ModelUser from "../models/modUser";
 
-class UserService {
+class ServiceUser {
     constructor() {
         this.modelUser = new ModelUser();
     }

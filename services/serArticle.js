@@ -1,7 +1,7 @@
 import ModelArticle from "../models/modArticle";
 import ModelUser from "../models/modUser";
 
-class ArticleService {
+class ServiceArticle {
     constructor() {
         this.modelArticle = new ModelArticle();
         this.modelUser = new ModelUser();

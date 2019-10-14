@@ -1,13 +1,13 @@
 import express from "express";
-import ArticleService from "../../../services/serArticle";
+import ServiceArticle from "../../../services/serArticle";
 
 const router = express.Router();
-const articleService = new ArticleService();
+const serviceArticle = new ServiceArticle();
 
 router.get("", async (req, res) => {
     try {
         // To Do : Sorting
-        const articles = await articleService.findArticles();
+        const articles = await serviceArticle.findArticles();
         res.json(articles);
     } catch (error) {
         console.log(error);
@@ -19,7 +19,7 @@ router.get("/:id", async (req, res) => {
         const {
             params: { id }
         } = req;
-        const article = await articleService.findArticle(id);
+        const article = await serviceArticle.findArticle(id);
         res.json(article);
     } catch (error) {
         console.log(error);
@@ -31,7 +31,7 @@ router.post("", async (req, res) => {
         const {
             body: { title, content, author }
         } = req;
-        await articleService.createArticle(title, content, author);
+        await serviceArticle.createArticle(title, content, author);
         res.status(200);
     } catch (error) {
         console.log(error);
@@ -46,7 +46,7 @@ router.put("/:id/update", async (req, res) => {
         const {
             body: { title, content }
         } = req;
-        await articleService.updateArticle(id, title, content);
+        await serviceArticle.updateArticle(id, title, content);
         res.status(200);
     } catch (error) {
         console.log(error);
@@ -58,7 +58,7 @@ router.delete("/:id", async (req, res) => {
         const {
             params: { id }
         } = req;
-        await articleService.deleteArticle(id);
+        await serviceArticle.deleteArticle(id);
         res.status(200);
     } catch (error) {
         console.log(error);
@@ -70,7 +70,7 @@ router.post("/:id/scrap", async (req, res) => {
     try {
         const bookId = req.params.id;
         const userId = req.body.id;
-        await articleService.scrapArticle(bookId, userId);
+        await serviceArticle.scrapArticle(bookId, userId);
         res.status(200);
     } catch (error) {
         console.log(error);
@@ -81,7 +81,7 @@ router.delete("/:id/scrap", async (req, res) => {
     try {
         const bookId = req.params.id;
         const userId = req.body.id;
-        await articleService.removeScrappedArticle(bookId, userId);
+        await serviceArticle.removeScrappedArticle(bookId, userId);
         res.status(200);
     } catch (error) {
         console.log(error);

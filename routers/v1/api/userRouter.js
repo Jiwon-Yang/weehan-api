@@ -1,7 +1,7 @@
 import express from "express";
-import UserService from "../../../services/serUser";
+import ServiceUser from "../../../services/serUser";
 
-const userService = new UserService();
+const serviceUser = new ServiceUser();
 const router = express.Router();
 
 router.get("/:id", async (req, res) => {
@@ -9,7 +9,7 @@ router.get("/:id", async (req, res) => {
         const {
             params: { id }
         } = req;
-        const user = await userService.findUser(id);
+        const user = await serviceUser.findUser(id);
         res.json(user);
     } catch (error) {
         console.log(error);
@@ -22,7 +22,7 @@ router.get("/:id/scraps", async (req, res) => {
         const {
             params: { id }
         } = req;
-        const scraps = await userService.findScraps(id);
+        const scraps = await serviceUser.findScraps(id);
         console.log(scraps); // { scraps: [] }
         res.json(scraps);
     } catch (error) {
