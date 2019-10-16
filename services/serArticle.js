@@ -64,4 +64,4 @@ class ServiceArticle {
     }
 }
 
-export default ArticleService;
+export default ServiceArticle;

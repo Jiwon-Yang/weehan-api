@@ -1,14 +1,16 @@
 import config from "../config";
 import api from "../routers";
 import session from "express-session";
-const MongoStore = require("connect-mongo")(session); // mongoDB에 session 저장하기 (connect-mongo 모듈 설치 필요)
 import cookieParser from "cookie-parser";
 import express from "express";
+import passport from "passport";
+
+const MongoStore = require("connect-mongo")(session);
 
 const expressLoader = app => {
     app.use(
         session({
-            secret: "fjseflijlskd",
+            secret: config.SECRET_KEY,
             resave: false,
             saveUninitialized: true,
             store: new MongoStore({
@@ -17,6 +19,9 @@ const expressLoader = app => {
             })
         })
     );
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));
 

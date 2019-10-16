@@ -18,4 +18,4 @@ class ServiceUser {
     }
 }
 
-export default UserService;
+export default ServiceUser;
