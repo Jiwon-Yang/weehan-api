@@ -1,26 +1,27 @@
 import config from "../config";
 import api from "../routers";
+import express from "express";
 import session from "express-session";
 import cookieParser from "cookie-parser";
-import express from "express";
 import passport from "passport";
+import "./passport";
 
 const MongoStore = require("connect-mongo")(session);
 
 const expressLoader = app => {
-    app.use(
-        session({
-            secret: config.SECRET_KEY,
-            resave: false,
-            saveUninitialized: true,
-            store: new MongoStore({
-                url: config.MONGO_URL,
-                collection: "sessions"
-            })
-        })
-    );
-    app.use(passport.initialize());
-    app.use(passport.session());
+    // app.use(
+    //     session({
+    //         secret: config.SECRET_KEY,
+    //         resave: false,
+    //         saveUninitialized: true,
+    //         store: new MongoStore({
+    //             url: config.MONGO_URL,
+    //             collection: "sessions"
+    //         })
+    //     })
+    // );
+    // app.use(passport.initialize());
+    // app.use(passport.session());
 
     app.use(cookieParser());
     app.use(express.urlencoded({ extended: true }));

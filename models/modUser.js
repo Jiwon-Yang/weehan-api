@@ -1,6 +1,10 @@
 import User from "./entities/User.entity";
 
 class ModelUser {
+    async createUser(email, password) {
+        const user = await User.create({ email, password });
+        return user;
+    }
     async findUserById(_id) {
         const user = await User.findOne({ _id });
         return user;

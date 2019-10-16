@@ -4,6 +4,12 @@ class ServiceUser {
     constructor() {
         this.modelUser = new ModelUser();
     }
+
+    async makeRegistration(email, password) {
+        const user = this.modelUser.createUser(email, password);
+        return user;
+    }
+
     async findUserEmailAndPassword(_id) {
         const infoIdPassword = this.modelUser.findEmailAndPassword(_id);
         return infoIdPassword;
